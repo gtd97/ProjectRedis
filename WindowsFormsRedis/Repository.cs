@@ -1,4 +1,5 @@
-﻿using ServiceStack.Redis;
+﻿using Newtonsoft.Json;
+using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace WindowsFormsRedis
         public List<AlumnoModel> GetAll()
         {
             List<AlumnoModel> lista = new List<AlumnoModel>();
+            Dictionary<string, string> dicKeyValue = new Dictionary<string, string>();
 
             using (RedisClient redisClient = new RedisClient("localhost:6379"))
             {
@@ -20,13 +22,15 @@ namespace WindowsFormsRedis
 
                 foreach(var key in keys)
                 {
-                    lista.Add(redisClient.Get<string>(key));
+                    var t = redisClient.Get<string>(key);
                 }
                     
             }
+
+            return lista;
         }
         */
-        
+
         public bool GetAlumnoById(int id)
         {
             AlumnoModel alumno;
@@ -43,15 +47,13 @@ namespace WindowsFormsRedis
 
 
 
-
-       
         public bool Put(AlumnoModel alumno)
         {
             using (RedisClient redisClient = new RedisClient("localhost:6379"))
             {
-                if (redisClient.Get<string>(alumno.id.ToString()) != null)
+                if (redisClient.Get<string>(alumno.Id.ToString()) != null)
                 {
-                    redisClient.Set(alumno.id.ToString(), alumno);
+                    redisClient.Set(alumno.Id.ToString(), alumno);
                     return true;
                 }
             }
@@ -64,9 +66,9 @@ namespace WindowsFormsRedis
         {
             using (RedisClient redisClient = new RedisClient("localhost:6379"))
             {
-                if (redisClient.Get<string>(alumno.id.ToString()) == null)
+                if (redisClient.Get<string>(alumno.Id.ToString()) == null)
                 {
-                    redisClient.Set(alumno.id.ToString(), alumno);
+                    redisClient.Set(alumno.Id.ToString(), alumno);
                     return true;
                 }
             }

@@ -16,7 +16,7 @@ namespace WindowsFormsRedis
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormAñadir());
+            Application.Run(new FormInicial());
         }
     }
 }

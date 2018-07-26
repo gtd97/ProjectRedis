@@ -15,11 +15,30 @@ namespace WindowsFormsRedis
         public FormInicial()
         {
             InitializeComponent();
+
+            //Repository repo = new Repository();
+            //repo.GetAll();
         }
 
         private void click_añadir(object sender, EventArgs e)
         {
+            FormAñadir windowsFormAñadir = new FormAñadir();
+            windowsFormAñadir.Show();
+        }
 
+        private void click_editar(object sender, EventArgs e)
+        {
+            FormEditar windowsFormEditar = new FormEditar();
+            windowsFormEditar.Show();
+        }
+
+        private void click_eliminar(object sender, EventArgs e)
+        {
+            Repository repo = new Repository();
+            repo.Delete(Convert.ToInt32(tb_id_eliminar.Text));
+
+            MessageBox.Show("Alumno eliminado correctamente!");
+            tb_id_eliminar.Clear();
         }
     }
 }

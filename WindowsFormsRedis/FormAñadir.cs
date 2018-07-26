@@ -25,6 +25,12 @@ namespace WindowsFormsRedis
 
             repo = new Repository();
             repo.Post(alumno);
+
+            MessageBox.Show("Alumno añadido correctamente!");
+            tb_id.Clear();
+            tb_nombre.Clear();
+            tb_apellido.Clear();
+            tb_dni.Clear();
         }
     }
 }
