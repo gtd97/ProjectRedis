@@ -16,6 +16,9 @@ namespace WindowsFormsRedis
         {
             InitializeComponent();
 
+            RepositoryExchanges test = new RepositoryExchanges();
+            test.GetAll();
+
             //Repository repo = new Repository();
             //repo.GetAll();
         }
